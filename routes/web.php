@@ -23,7 +23,7 @@ Route::get('/', function () {
 //Tutte le rotte 'private' che prevedono autenticazione
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('admin.dashboard');
     })->name('dashboard');
 
     Route::resource('projects', ProjectController::class);

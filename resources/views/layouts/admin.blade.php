@@ -96,7 +96,7 @@
                 <li class="nav-item">
                     <a
                       class="nav-link text-white {{ Route::currentRouteName() == 'admin.posts.index' ? 'bg-secondary' : '' }}"
-                      href="{{route('admin.posts.index')}}"
+                      href="{{route('admin.projects.index')}}"
                     >
                       <i class="fa-solid fa-paperclip fa-lg fa-fw"></i>
                       Posts
