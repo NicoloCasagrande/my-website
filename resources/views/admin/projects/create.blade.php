@@ -28,15 +28,15 @@
               <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
                 <input type="file" class="form-control" id="image" name="image" value="{{old('image')}}">
-                {{-- <div class="mb-3">
-                  <label for="category_id" class="form-label">Categoria</label>
-                  <select class="form-select" name="category_id" id="category_id">
-                    <option value="">Senza Categoria</option>
-                    @foreach ($categories as $category)
-                      <option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
+                <div class="mb-3">
+                  <label for="type_id" class="form-label">Tipologia</label>
+                  <select class="form-select" name="type_id" id="type_id">
+                    <option value="">Senza Tipologia</option>
+                    @foreach ($types as $type)
+                      <option value="{{$type->id}}" {{old('type_id') == $type->id ? 'selected' : ''}}>{{$type->name}}</option>
                     @endforeach
                   </select>
-                </div> --}}
+                </div>
                 {{-- <div class="mb-3">
                   @foreach($tags as $tag)
                     <div class="form-check form-check-inline">

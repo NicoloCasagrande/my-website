@@ -117,7 +117,7 @@
                     href="{{route('admin.types.index')}}"
                   >
                   <i class="fa-solid fa-microchip fa-lg fa-fw"></i>
-                    Tecnologia
+                    Tecnologie
                   </a>
                 </li>
               </ul>
