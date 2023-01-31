@@ -99,8 +99,27 @@
                       href="{{route('admin.projects.index')}}"
                     >
                       <i class="fa-solid fa-paperclip fa-lg fa-fw"></i>
-                      Posts
+                      Progetti
                     </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
+                    href="{{route('admin.types.index')}}"
+                  >
+                  <i class="fa-solid fa-filter fa-lg fa-fw"></i>
+                    Tipologie
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
+                    href="{{route('admin.types.index')}}"
+                  >
+                  <i class="fa-solid fa-microchip fa-lg fa-fw"></i>
+                    Tecnologia
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     })->name('dashboard');
 
     Route::resource('projects', ProjectController::class)->parameters(['posts' => 'post:slug']);
+    Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
 });
 
 //Tutte le rotte relative all'autenticazione

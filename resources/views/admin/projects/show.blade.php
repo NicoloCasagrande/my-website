@@ -3,7 +3,7 @@
 @section('content')
     <h1>{{$project->title}}</h1>
     {{-- Con il punto interrogativo prima del nome della proprietà si intende 'se esiste stampa se no non farlo' --}}
-    {{-- <a href="{{route('admin.categories.show', $post->category)}}"><h3>{{$post->category?->name ?: 'Nessuna Categoria'}}</h3></a> --}}
+    <a href="{{route('admin.types.show', $project->type)}}"><h3>{{$project->type?->name ?: 'Nessuna Tipologia'}}</h3></a>
     <p>{{$project->content}}</p>
     
     {{-- @if($project->tags)
