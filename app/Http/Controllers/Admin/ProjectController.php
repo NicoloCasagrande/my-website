@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -27,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
@@ -38,7 +39,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_project = new Project();
+        $new_project->fill($data);
+        $new_project->slug = Str::slug($new_project->title);
+        $new_project->save();
+
+        return redirect()->route('admin.projects.index')->with('message', 'Progetto creato con successo!');
     }
 
     /**
@@ -60,7 +67,7 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -72,7 +79,13 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $data = $request->validated();
+        $project = new Project();
+        $project->fill($data);
+        $project->slug = Str::slug($project->title);
+        $project->update();
+
+        return redirect()->route('admin.projects.index')->with('message', 'Progetto modificato con successo!');
     }
 
     /**
@@ -83,6 +96,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $old_title = $project->title;
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('message', "Il post $old_title è stato cancellato");
     }
 }

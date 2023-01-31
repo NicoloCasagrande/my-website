@@ -2,7 +2,16 @@
 
 @section('content')
     <h1>Lista Progetti</h1>
-
+    
+    {{-- gestione messaggi CRUD --}}
+    @if(session('message'))
+      <div class="alert alert-success">
+        {{ session('message') }}
+      </div>
+    @endif
+    <div class="my-3">
+      <a href="{{route('admin.projects.create')}}" class="btn btn-primary">Crea un nuovo Progetto</a>
+    </div>
     <table class="table">
         <thead>
           <tr>
@@ -44,7 +53,7 @@
                   <form action="{{route('admin.projects.destroy', $project)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-primary">Si</button>
+                    <button type="submit" class="btn btn-danger">Si</button>
                   </form>
                 </div>
               </div>
