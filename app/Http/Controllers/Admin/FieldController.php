@@ -27,7 +27,7 @@ class FieldController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.fields.create');
     }
 
     /**

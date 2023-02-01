@@ -120,6 +120,15 @@
                     Tecnologie
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.fields.index' ? 'bg-secondary' : '' }}"
+                    href="{{route('admin.fields.index')}}"
+                  >
+                  <i class="fa-solid fa-folder fa-lg fa-fw"></i>
+                    Campi
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>
