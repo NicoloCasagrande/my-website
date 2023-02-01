@@ -4,6 +4,9 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
+use App\Models\Project;
+use App\Models\Technology;
+use App\Models\Type;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +28,10 @@ Route::get('/', function () {
 //Tutte le rotte 'private' che prevedono autenticazione
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        $projects = Project::all();
+        $types = Type::all();
+        $technologies = Technology::all();
+        return view('admin.dashboard', compact('projects', 'types', 'technologies'));
     })->name('dashboard');
 
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
