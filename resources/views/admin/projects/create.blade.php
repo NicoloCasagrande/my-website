@@ -37,14 +37,14 @@
                     @endforeach
                   </select>
                 </div>
-                {{-- <div class="mb-3">
-                  @foreach($tags as $tag)
+                <div class="mb-3">
+                  @foreach($technologies as $technology)
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="{{$tag->slug}}" name="tags[]" value="{{$tag->id}}"{{in_array($tag->id, old('tags', [])) ? 'checked' : ""}}>
-                      <label class="form-check-label" for="{{$tag->slug}}">{{$tag->name}}</label>
+                      <input class="form-check-input" type="checkbox" id="{{$technology->slug}}" name="technologies[]" value="{{$technology->id}}"{{in_array($technology->id, old('technologies', [])) ? 'checked' : ""}}>
+                      <label class="form-check-label" for="{{$technology->slug}}">{{$technology->name}}</label>
                     </div>
                   @endforeach
-                </div> --}}
+                </div>
               <button type="submit" class="btn btn-success mt-5">Conferma</button>
         </form>
     </div>

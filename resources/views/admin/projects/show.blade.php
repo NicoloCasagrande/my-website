@@ -6,13 +6,13 @@
     <a href="{{route('admin.types.show', $project->type)}}"><h3>{{$project->type?->name ?: 'Nessuna Tipologia'}}</h3></a>
     <p>{{$project->content}}</p>
     
-    {{-- @if($project->tags)
+    @if($project->technologies)
         <div class="mb-3">
-            @foreach($post->tags as $tag)
-            <a href="{{route('admin.tags.show', $tag)}}"><span class="badge text-bg-success">{{$tag->name}}</span></a>
+            @foreach($project->technologies as $technology)
+            <a href="{{route('admin.technologies.show', $technology)}}"><span class="badge text-bg-success">{{$technology->name}}</span></a>
             @endforeach
         </div>
-    @endif --}}
+    @endif
     
     <div>
         <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning my-1 d-inline-block">Modifica</a>
