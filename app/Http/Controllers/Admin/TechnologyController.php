@@ -6,6 +6,7 @@ use App\Models\Technology;
 use App\Http\Requests\StoreTechnologyRequest;
 use App\Http\Requests\UpdateTechnologyRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class TechnologyController extends Controller
 {
@@ -38,7 +39,13 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_technology = new Technology();
+        $new_technology->fill($data);
+        $new_technology->slug = Str::slug($new_technology->name);
+        $new_technology->save();
+
+        return redirect()->route('admin.technologies.index')->with('message', 'Tecnologia creata con successo !');
     }
 
     /**
@@ -72,7 +79,12 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $data = $request->validated();
+        $technology->fill($data);
+        $technology->slug = Str::slug($technology->name);
+        $technology->update();
+
+        return redirect()->route('admin.technologies.index')->with('message', 'Tecnologia aggiornata con successo !');
     }
 
     /**
@@ -83,6 +95,9 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $old_name = $technology->name;
+        $technology->delete();
+
+        return redirect()->route('admin.technologies.index')->with('message', "Il post $old_name è stato cancellato");
     }
 }
