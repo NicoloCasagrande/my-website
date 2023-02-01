@@ -15,7 +15,7 @@
     @endif --}}
     
     <div>
-        <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning my-1 d-inline-block">Modifica</a>
+        <a href="{{route('admin.projects.edit', $technology)}}" class="btn btn-warning my-1 d-inline-block">Modifica</a>
         <form action="{{route('admin.projects.destroy', $project)}}" method="POST" class="d-inline">
             @csrf
             @method('DELETE')

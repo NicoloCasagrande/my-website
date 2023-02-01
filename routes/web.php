@@ -28,7 +28,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::resource('projects', ProjectController::class)->parameters(['posts' => 'post:slug']);
+    Route::resource('projects', ProjectController::class)->parameters(['projects' => 'post:slug']);
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
     Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'type:slug']);
 });
