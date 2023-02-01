@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FieldController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TypeController;
@@ -37,6 +38,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
     Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
+    Route::resource('fields', FieldController::class)->parameters(['fields' => 'field:slug']);
+    
 });
 
 //Tutte le rotte relative all'autenticazione
