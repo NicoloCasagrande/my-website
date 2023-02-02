@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fields', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 150)->unique();
-            $table->string('slug');
-            $table->timestamps();
+        Schema::table('projects', function (Blueprint $table) {
+            $table->foreignId('field_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 
@@ -28,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fields');
+        Schema::table('projects', function (Blueprint $table) {
+            $table->dropForeign(['field_id']);
+            $table->dropColumn('field_id');
+        });
     }
 };

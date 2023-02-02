@@ -15,16 +15,16 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">Titolo</th>
-            <th scope="col">Descrizione</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Slug</th>
             <th scope="col">Azioni</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($fields as $field)
           <tr>
-            <td>{{$field->title}}</td>
-            <td>{{$field->content}}</td>
+            <td>{{$field->name}}</td>
+            <td>{{$field->slug}}</td>
             <td>
               <div class="d-flex align-items-center">
                 <a href="{{route('admin.fields.show', $field)}}" class="btn btn-primary my-1 d-inline-block mx-1 main-post-button"><i class="fa-solid fa-eye"></i></a>
@@ -46,7 +46,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  Sei sicuro di voler eliminare la categoria "{{$field->title}}"
+                  Sei sicuro di voler eliminare la categoria "{{$field->name}}"
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

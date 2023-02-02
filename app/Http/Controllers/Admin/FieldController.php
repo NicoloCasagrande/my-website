@@ -6,6 +6,7 @@ use App\Models\Field;
 use App\Http\Requests\StoreFieldRequest;
 use App\Http\Requests\UpdateFieldRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class FieldController extends Controller
 {
@@ -38,7 +39,17 @@ class FieldController extends Controller
      */
     public function store(StoreFieldRequest $request)
     {
-        //
+        $data = $request->validated();
+        $new_field = new Field();
+        $new_field->fill($data);
+        $new_field->slug = Str::slug($new_field->name);
+        $new_field->save();
+
+        if(isset($data['technologies'])){
+            $new_field->technologies()->sync($data['technologies']);
+        }
+
+        return redirect()->route('admin.projects.index')->with('message', 'Progetto creato con successo!');
     }
 
     /**

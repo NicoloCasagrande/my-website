@@ -20,6 +20,6 @@ class Project extends Model
     }
 
     public function fields(){
-        return $this->belongsToMany(Technology::class);
+        return $this->belongsTo(Field::class);
     }
 }
