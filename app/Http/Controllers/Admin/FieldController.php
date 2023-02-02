@@ -45,11 +45,7 @@ class FieldController extends Controller
         $new_field->slug = Str::slug($new_field->name);
         $new_field->save();
 
-        if(isset($data['technologies'])){
-            $new_field->technologies()->sync($data['technologies']);
-        }
-
-        return redirect()->route('admin.projects.index')->with('message', 'Progetto creato con successo!');
+        return redirect()->route('admin.fields.index')->with('message', 'Campo creato con successo!');
     }
 
     /**
@@ -60,7 +56,7 @@ class FieldController extends Controller
      */
     public function show(Field $field)
     {
-        //
+        return view('admin.fields.show', compact('field'));
     }
 
     /**
@@ -71,7 +67,7 @@ class FieldController extends Controller
      */
     public function edit(Field $field)
     {
-        //
+        return view('admin.fields.edit', compact('field'));
     }
 
     /**
@@ -83,7 +79,12 @@ class FieldController extends Controller
      */
     public function update(UpdateFieldRequest $request, Field $field)
     {
-        //
+        $data = $request->validated();
+        $field->fill($data);
+        $field->slug = Str::slug($field->name);
+        $field->update();
+
+        return redirect()->route('admin.fields.index')->with('message', 'Campo aggiornato con successo !');
     }
 
     /**
@@ -94,6 +95,9 @@ class FieldController extends Controller
      */
     public function destroy(Field $field)
     {
-        //
+        $old_name = $field->name;
+        $field->delete();
+
+        return redirect()->route('admin.fields.index')->with('message', "Il post $old_name è stato cancellato");
     }
 }

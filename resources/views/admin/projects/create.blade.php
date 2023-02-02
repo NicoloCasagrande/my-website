@@ -38,6 +38,15 @@
                   </select>
                 </div>
                 <div class="mb-3">
+                  <label for="field_id" class="form-label">Campo</label>
+                  <select class="form-select" name="field_id" id="field_id">
+                    <option value="">Senza Campo</option>
+                    @foreach ($fields as $field)
+                      <option value="{{$field->id}}" {{old('field_id') == $field->id ? 'selected' : ''}}>{{$field->name}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="mb-3">
                   @foreach($technologies as $technology)
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="{{$technology->slug}}" name="technologies[]" value="{{$technology->id}}"{{in_array($technology->id, old('technologies', [])) ? 'checked' : ""}}>

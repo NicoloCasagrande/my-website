@@ -9,17 +9,18 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $guarded =['slug']; 
+    protected $guarded =['slug'];  
 
     public function type(){
         return $this->belongsTo(Type::class);
+    }
+
+    public function field(){
+        return $this->belongsTo(Field::class);
     }
 
     public function technologies(){
         return $this->belongsToMany(Technology::class);
     }
 
-    public function fields(){
-        return $this->belongsTo(Field::class);
-    }
 }

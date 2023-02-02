@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Field;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Str;
@@ -32,7 +33,8 @@ class ProjectController extends Controller
     {
         $technologies = Technology::all();
         $types = Type::all();
-        return view('admin.projects.create', compact('types', 'technologies'));
+        $fields = Field::all();
+        return view('admin.projects.create', compact('types', 'technologies', 'fields'));
     }
 
     /**
@@ -64,6 +66,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        @dd($project);
         return view('admin.projects.show', compact('project'));
     }
 
@@ -77,7 +80,8 @@ class ProjectController extends Controller
     {
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
+        $fields = Field::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies', 'fields'));
     }
 
     /**
@@ -90,6 +94,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
+        @dd($data);
         $project->fill($data);
         $project->slug = Str::slug($project->title);
         $project->update();

@@ -95,7 +95,7 @@
                 </li>
                 <li class="nav-item">
                   <a
-                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.index' ? 'bg-secondary' : '' }}"
+                    class="nav-link text-white {{ str_contains(Route::currentRouteName(), 'admin.projects') ? 'bg-secondary' : '' }}"
                     href="{{route('admin.projects.index')}}"
                   >
                     <i class="fa-solid fa-paperclip fa-lg fa-fw"></i>
@@ -104,7 +104,7 @@
                 </li>
                 <li class="nav-item">
                   <a
-                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
+                    class="nav-link text-white {{ str_contains(Route::currentRouteName(), 'admin.types') ? 'bg-secondary' : '' }}"
                     href="{{route('admin.types.index')}}"
                   >
                   <i class="fa-solid fa-filter fa-lg fa-fw"></i>
@@ -113,7 +113,7 @@
                 </li>
                 <li class="nav-item">
                   <a
-                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.technologies.index' ? 'bg-secondary' : '' }}"
+                    class="nav-link text-white {{ str_contains(Route::currentRouteName(), 'admin.technologies') ? 'bg-secondary' : '' }}"
                     href="{{route('admin.technologies.index')}}"
                   >
                   <i class="fa-solid fa-microchip fa-lg fa-fw"></i>
@@ -122,7 +122,7 @@
                 </li>
                 <li class="nav-item">
                   <a
-                    class="nav-link text-white {{ Route::currentRouteName() == 'admin.fields.index' ? 'bg-secondary' : '' }}"
+                    class="nav-link text-white {{ str_contains(Route::currentRouteName(), 'admin.fields') ? 'bg-secondary' : '' }}"
                     href="{{route('admin.fields.index')}}"
                   >
                   <i class="fa-solid fa-folder fa-lg fa-fw"></i>
