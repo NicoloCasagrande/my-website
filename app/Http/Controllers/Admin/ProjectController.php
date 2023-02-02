@@ -9,7 +9,9 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Field;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -49,6 +51,10 @@ class ProjectController extends Controller
         $new_project = new Project();
         $new_project->fill($data);
         $new_project->slug = Str::slug($new_project->title);
+
+        if( isset($data['cover_image']) ){
+            $new_project->cover_image = Storage::disk('public')->put('uploads', $data['cover_image']);
+        }
         $new_project->save();
 
         if(isset($data['technologies'])){
@@ -66,7 +72,6 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        @dd($project);
         return view('admin.projects.show', compact('project'));
     }
 
@@ -96,6 +101,17 @@ class ProjectController extends Controller
         $data = $request->validated();
         $project->fill($data);
         $project->slug = Str::slug($project->title);
+        if ( isset($data['cover_image']) ) {
+            if( $project->cover_image ) {
+                Storage::delete($project->cover_image);
+            }
+            $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+        }
+
+        if( isset($data['no_image']) && $project->cover_image  ) {
+            Storage::disk('public')->delete($project->cover_image);
+            $project->cover_image = null;
+        }
         $project->update();
 
         if(isset($data['technologies'])){
@@ -116,6 +132,9 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $old_title = $project->title;
+        if($project->cover_image){
+            Storage::disk('public')->delete($project->cover_image);
+        }
         $project->delete();
 
         return redirect()->route('admin.projects.index')->with('message', "Il post $old_title è stato cancellato");
