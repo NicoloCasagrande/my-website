@@ -11,6 +11,10 @@ class Project extends Model
 
     protected $guarded =['slug'];  
 
+    protected function getImageAttribute(){
+        return $this->cover_image ? asset("storage/$this->cover_image") : "null";
+    }
+
     public function type(){
         return $this->belongsTo(Type::class);
     }
