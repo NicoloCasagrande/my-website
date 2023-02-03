@@ -42,6 +42,10 @@
                   <input type="file" class="form-control" id="cover_image" name="cover_image" value="{{old('cover_image')}}" onchange="loadFile(event)">          
                 </div>
                 <div class="mb-3">
+                  <label for="preview_link" class="form-label">Link all'anteprima del Progetto</label>
+                  <input type="text" class="form-control" id="preview_link" name="preview_link" placeholder="Inserisci il link" value="{{old('preview_link')}}">
+                </div>
+                <div class="mb-3">
                   <label for="type_id" class="form-label">Tipologia</label>
                   <select class="form-select" name="type_id" id="type_id">
                     <option value="">Senza Tipologia</option>
