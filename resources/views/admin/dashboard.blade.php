@@ -14,7 +14,7 @@
                         @endforeach
                     </ul>
                 @endif
-                <h3>Numero di categorie: {{count($types)}}</h3>
+                <h3>Numero di Tipologie: {{count($types)}}</h3>
                 @if(count($types) !== 0)
                     <ul>
                         @foreach($types as $type)
@@ -22,11 +22,19 @@
                         @endforeach
                     </ul>
                 @endif
-                <h3>Numero di tag: {{count($technologies)}}</h3>
+                <h3>Numero di Tecnologie: {{count($technologies)}}</h3>
                 @if(count($technologies) !== 0)
                     <ul>
                         @foreach($technologies as $technology)
                             <li><a href="{{route('admin.technologies.show', $technology)}}">{{$technology->name}}</a></li>
+                        @endforeach
+                    </ul>
+                @endif
+                <h3>Numero di Campi: {{count($fields)}}</h3>
+                @if(count($fields) !== 0)
+                    <ul>
+                        @foreach($fields as $field)
+                            <li><a href="{{route('admin.fields.show', $field)}}">{{$field->name}}</a></li>
                         @endforeach
                     </ul>
                 @endif

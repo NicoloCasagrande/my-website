@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
+use App\Models\Field;
 use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
@@ -32,7 +33,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         $projects = Project::all();
         $types = Type::all();
         $technologies = Technology::all();
-        return view('admin.dashboard', compact('projects', 'types', 'technologies'));
+        $fields = Field::all();
+        return view('admin.dashboard', compact('projects', 'types', 'technologies', 'fields'));
     })->name('dashboard');
 
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
