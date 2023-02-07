@@ -24,7 +24,7 @@
           @foreach ($types as $type)
           <tr>
             <td>{{$type->name}}</td>
-            <td>{{$type->content}}</td>
+            <td>{{$type->slug}}</td>
             <td>
               <div class="d-flex align-items-center">
                 <a href="{{route('admin.types.show', $type)}}" class="btn btn-primary my-1 d-inline-block mx-1 main-post-button"><i class="fa-solid fa-eye"></i></a>
